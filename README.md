@@ -1,93 +1,57 @@
 ⚡ GANS Mobility Data Pipeline
 Overview
 
-GANS Mobility is an e-scooter startup using data to optimize fleet distribution.
-This project builds a cloud-based ETL pipeline that collects and processes external data — including weather, flights, and demographics — to support smarter scooter placement decisions.
+GANS Mobility is a data-driven e-scooter company focused on optimizing fleet operations in major cities.
+This project demonstrates how data engineering principles can be applied to automate the collection, processing, and storage of real-world information that influences scooter demand.
 
-The system runs automatically on Google Cloud Platform (GCP) and stores all processed data in a MySQL database.
+The pipeline integrates weather, flight, and demographic data, processes it using Python, and stores the results in a secure cloud database hosted on Google Cloud Platform (GCP).
 
-🧭 Pipeline Summary
-APIs & Web Sources
-     ↓
-Data Extraction (Python)
-     ↓
-Cleaning & Transformation (pandas)
-     ↓
-Cloud Storage (MySQL on GCP)
-     ↓
-Automation (Cloud Functions + Scheduler)
+Project Goal
 
+The purpose of this project is to build an automated ETL (Extract, Transform, Load) system capable of gathering data from multiple public sources and turning it into actionable insights for mobility optimization.
 
-The modular structure allows independent testing and smooth deployment to GCP.
+The collected data supports strategic decisions such as where to deploy scooters, when to rebalance fleets, and how external factors like tourism or weather affect daily usage.
 
-☁️ Why Cloud?
+Architecture Overview
 
-Automation: Regular data updates via Cloud Scheduler
+The system follows a modular workflow that moves data through several layers:
 
-Scalability: Handles growing data sources
+Data Collection – retrieves information from APIs and web sources
 
-Security: Managed access and credentials
+Data Cleaning & Transformation – standardizes formats and removes inconsistencies
 
-Accessibility: Shared database for analytics and reporting
+Cloud Storage – stores processed data in a MySQL database on GCP
 
-All functions can be tested locally with Flask before deployment.
+Automation – uses Google Cloud Functions and Scheduler to keep data up to date
 
-🧰 Tools & Libraries
-Purpose	Stack
-Language	Python 3
-Extraction	requests, BeautifulSoup, OpenWeather API
-Processing	pandas, json, custom utils
-Storage	MySQL (Google Cloud SQL)
-Automation	Google Cloud Functions, Cloud Scheduler
-Testing	Flask
-📂 Project Structure
-📁 gans-pipeline
-├── cities.py          # City and country info
-├── weather.py         # Weather data
-├── flights.py         # Flight activity
-├── demographics.py    # Population data
-├── utils.py           # Helper functions
-├── requirements.txt
-└── README.md
+Why Use the Cloud
 
-⚙️ Setup
-# Clone repo
-git clone https://github.com/yourusername/gans-pipeline.git
-cd gans-pipeline
+Migrating to the cloud ensures scalability, continuous automation, and secure access for distributed teams.
+GCP services handle storage, scheduling, and credentials, allowing the engineering focus to stay on building and improving data pipelines rather than maintaining infrastructure.
 
-# Install dependencies
-pip install -r requirements.txt
+Tools & Technologies
 
+Python 3 for data handling and scripting
 
-Update credentials in utils.py:
+pandas and JSON utilities for processing
 
-RAPID_API_KEY = "your_key"
-WEATHER_API_KEY = "your_key"
-schema = "db_schema"
-host = "gcp_host"
-password = "password"
+MySQL (Google Cloud SQL) for structured storage
 
+Google Cloud Functions for automation
 
-Run locally:
+Flask for local testing and debugging
 
-python cities.py
-python weather.py
-python flights.py
+Outcomes
 
+By consolidating and automating data flows, GANS Mobility gains reliable insights into scooter usage trends and external influences such as weather or tourist arrivals.
+The result is a scalable, maintainable, and cloud-ready data engineering solution built to grow with the company’s global operations.
 
-Deploy to Google Cloud:
+Key Learnings
 
-@functions_framework.http
-def main(request):
-    # ETL process here
-    return "Pipeline executed successfully"
+Designing modular ETL systems for flexibility and maintenance
 
-📘 Key Takeaways
+Integrating multiple data sources into one coherent pipeline
 
-Built a scalable ETL pipeline using Python and GCP
+Leveraging cloud infrastructure for automation and scalability
 
-Combined API and web-scraped data sources
-
-Automated workflows with serverless cloud tools
-
-Developed and tested locally with Flask
+Applying Python for end-to-end data engineering workflows
